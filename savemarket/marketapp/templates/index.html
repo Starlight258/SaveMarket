@@ -1,1 +1,11 @@
 <h3>homepage</h3>
+<table class="table-contents" style="padding: 10px">
+  {% for f in food %}
+  <tr>
+    <td>{{f.name}}</td><tr/>
+    <td>{{f.price}}</td><tr/>
+    <td>{{f.place}}</td><tr/>
+    <td>{{f.page}}</td><tr/>
+  </tr>
+  {% endfor %}
+</table>
