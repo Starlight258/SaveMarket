@@ -4,18 +4,17 @@ import * as Category from "../components/Category"
 import Product from "../components/Product";
 import { IoSparkles } from "react-icons/io5";
 import { MdChair } from "react-icons/md";
+import * as Data from '../Data.jsx';
 
 function Interior() {
+    const InteriorData = Data.GetInterior();
     return(
-        <div>
+        <>
             <Main.ProductTitle>
                 <IoSparkles size='40' color='rgba(36, 176, 255, 1)'/>&nbsp;신규 공구! NEW~
             </Main.ProductTitle>
             <Main.ProductList>
-                <Product/>
-                <Product/>
-                <Product/>
-                <Product/>
+                {/* 해당 카테고리 신규 상품 4개 */}
             </Main.ProductList>
 
             <Category.CategoryTitle>
@@ -31,24 +30,10 @@ function Interior() {
                 </Category.SelectSort>
             </Category.CategoryTitle>
             <Main.ProductList>
-                <Product/>
-                <Product/>
-                <Product/>
-                <Product/>
-                <Product/>
-                <Product/>
-                <Product/>
-                <Product/>
-                <Product/>
-                <Product/>
-                <Product/>
-                <Product/>
-                <Product/>
-                <Product/>
-                <Product/>
-                <Product/>
+                {InteriorData.map(item => <Product key={item.id} item={item} />)}
             </Main.ProductList>
-        </div>
+            <div style={{height: '70px', backgroundColor: '#fff'}}></div>
+        </>
     );
 }
 

@@ -95,7 +95,9 @@ function Header() {
                             <Link to='/wishlist' style={{textDecoration : 'none', color: 'black'}}>
                                 <MyBoxMenu>위시리스트</MyBoxMenu>
                             </Link>
-                            <MyBoxMenu>나의 공구함</MyBoxMenu>
+                            <Link to='/joinlist' style={{textDecoration : 'none', color: 'black'}}>
+                                <MyBoxMenu>나의 공구함</MyBoxMenu>
+                            </Link>
                         </span>
                     </>
                     <Link to='/alarm'>

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState, useNavigate} from 'react';
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 import "../icon.css";
 import { BsPerson } from "react-icons/bs";
 import { AiOutlineLock } from "react-icons/ai";
+import axios from 'axios';
 
 const LoginContainer = styled.div`
     width: 700px;
@@ -74,7 +76,8 @@ const LoginBtn = styled.button`
     border-radius: 15px;
     border: none;
     margin-top: 10px;
-    background: rgba(36, 176, 255, 1);
+    background-color: rgba(36, 176, 255, 1);
+    cursor: pointer;
 `;
 
 const LoginBot = styled(LoginMid)`
@@ -90,29 +93,63 @@ const RegisterBtn = styled.button`
     border: 2px solid rgba(36, 176, 255, 1);
     border-radius: 10px;
     background-color: transparent;
+    cursor: pointer;
 `;
 
 function Login() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const inputEmail = (e) => {
+        setEmail(e.target.value);
+    }
+
+    const inputPassword = (e) => {
+        setPassword(e.target.value);
+    }
+
+    const onClickLogin = () => {
+        axios.post('', {
+            userEmail : email,
+            userPassword: password
+        })
+        .then(res => {
+            console.log(res);
+            console.log(res.data.email);
+            console.log(res.data.password);
+            if(res.data.email !== email) {
+                alert('잘못된 이메일입니다');
+            } else if(res.data.password === password) {
+                alert('잘못된 비밀번호입니다');
+            } else if(res.data.email === email) {
+                sessionStorage.setItem('userEmail', email);
+            }
+        })
+        .catch(console.log('error'))
+    }
+
     return(
         <div style={{background: '#f9f9f9', height: '100%', display: 'flex'}}>
             <LoginContainer>
                 <h1 style={{fontFamily: "'Noto Sans KR', sans-serif", fontSize: 30, marginTop: 50, marginBottom: 45}}>로그인</h1>
-                <LoginId>
-                    <BsPerson size='25' className='loginIdPerson'/>
-                    <LoginText type = "text" placeholder="아이디" />
-                </LoginId>
-                <LoginPw>
-                    <AiOutlineLock size='25' className='loginPwLock' />
-                    <LoginText type = "password"  placeholder="비밀번호" />
-                </LoginPw>
+                <form >
+                    <LoginId>
+                        <BsPerson size='25' className='loginIdPerson'/>
+                        <LoginText type = "email" placeholder="이메일" value={email} onChange={inputEmail} />
+                    </LoginId>
+                    <LoginPw>
+                        <AiOutlineLock size='25' className='loginPwLock' />
+                        <LoginText type = "password" placeholder="비밀번호" value={password} onChange={inputPassword} />
+                    </LoginPw>
+                </form>
                 <LoginMid>
                     <label style={{display: 'flex', alignItems: 'center'}}><Remember type="checkbox" />자동 로그인</label>
                     <FindIdPw>아이디 찾기 / 비밀번호 찾기</FindIdPw>
                 </LoginMid>
-                <LoginBtn>로그인</LoginBtn>
+                <LoginBtn onClick={onClickLogin}>로그인</LoginBtn>
                 <LoginBot>
                     아끼자의 회원이 아니신가요?<br></br>지금 당장 가입해서 아껴보세요
-                    <RegisterBtn>회원가입</RegisterBtn>
+                    <Link to='/account'><RegisterBtn>회원가입</RegisterBtn></Link>
                 </LoginBot>
             </LoginContainer>
         </div>

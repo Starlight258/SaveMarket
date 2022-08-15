@@ -11,7 +11,7 @@ const Bar = styled.nav`
     border-bottom: 2px solid #d3d3d3;
     align-items: stretch;
     display: flex;
-    grid-template-columns: 1fr 11fr;
+    justify-content: space-evenly;
 `;
 
 const Making = styled.div`
@@ -21,7 +21,7 @@ const Making = styled.div`
     padding-right: 10px;
     padding-left: 10px;
     float: left;
-    margin-right: 20px;
+    margin-right: 30px;
 `;
 
 const MakeText = styled.div`
@@ -34,14 +34,15 @@ const MakeText = styled.div`
 const Menu = styled.ul`
     display: inline-block;
     margin: auto;
+    padding-left: 0;
 `;
 
 const Category = styled.li`
     list-style: none;
     float: left;
     line-height: 45px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
     font-family: 'Noto Sans KR', sans-serif;
     &:hover{
         color: #24b0ff;
@@ -71,10 +72,12 @@ function NavBar({}) {
         <>
             <Bar>
                 <Menu>
-                    <Making>
-                        <AiOutlinePlusCircle size='30' color='#fff' className='plus' />
-                        <MakeText>공구하기</MakeText>
-                    </Making>
+                    <Link to='/create' style={{textDecoration : 'none'}}>
+                        <Making>
+                            <AiOutlinePlusCircle size='30' color='#fff' className='plus' />
+                            <MakeText>공구하기</MakeText>
+                        </Making>
+                    </Link>
                     <Category>
                         <CategoryLink current={pathname === '/beauty'} to='/beauty'>의류⋅잡화⋅뷰티</CategoryLink>
                     </Category>
@@ -95,12 +98,6 @@ function NavBar({}) {
                     </Category>
                     <Category>
                         <CategoryLink current={pathname === '/pet'} to='/pet'>반려동물</CategoryLink>
-                    </Category>
-                    <Category>
-                        <CategoryLink current={pathname === '/digital'} to='/digital'>디지털 기기</CategoryLink>
-                    </Category>
-                    <Category>
-                        <CategoryLink current={pathname === '/sport'} to='/sport'>스포츠⋅레저</CategoryLink>
                     </Category>
                     <Category>
                         <CategoryLink current={pathname === '/etc'} to='/etc'>기타</CategoryLink>

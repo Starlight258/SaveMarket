@@ -1,18 +1,19 @@
-import React from 'react';
+import React, {useState, useNavigate} from 'react';
 import styled from "styled-components";
 import "../icon.css";
 import * as Login from "./Login";
 import { BsPeopleFill, BsPerson, BsPersonCircle } from "react-icons/bs";
-import { AiOutlineLock } from "react-icons/ai";
+import { AiOutlineLock, AiOutlineIdcard } from "react-icons/ai";
 import { MdSmartphone, MdOutlineHome } from "react-icons/md";
 import { TiSortNumericallyOutline } from "react-icons/ti";
+import axios from 'axios';
 
 const AccountContainer = styled.div`
     width: 75%;
-    height: 650px;
+    height: 600px;
     border: 1px solid #3F3F3F;
     border-radius: 20px;
-    margin: 50px auto;
+    margin: 70px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -46,17 +47,66 @@ const AccountText = styled(Login.LoginText)`
 `;
 
 const AccountBtn = styled.button`
-    padding: 5px 10px 5px 10px;
+    padding: 2px 7px 2px 7px;
     margin-top: 30px;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 22px;
     color: #fff;
     border-radius: 10px;
-    border: none;
+    border: 3px solid rgba(36, 176, 255, 1);
     background-color: rgba(36, 176, 255, 1);
+    cursor: pointer;
 `;
 
 function Account() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [phone, setPhone] = useState('');
+    const [address, setAddress] = useState('');
+
+    const inputEmail = (e) => {
+        setEmail(e.target.value);
+    }
+
+    const inputPassword = (e) => {
+        setPassword(e.target.value);
+    }
+
+    const inputName = (e) => {
+        setName(e.target.value);
+    }
+
+    const inputPhone = (e) => {
+        setPhone(e.target.value);
+    }
+
+    const inputAddress = (e) => {
+        setAddress(e.target.value);
+    }
+
+    const user = {
+        email : email,
+        password: password,
+        name: name,
+        phone: phone,
+        address: address
+    }
+
+    const onClickAccount = async() => {
+        try {
+            const response = await
+            axios.post("/api/accout/", user, {
+                headers: {"Content-Type":"application/json"},
+                withCredentials: true }
+            );
+            return response.data;
+        }
+        catch(error) {
+            console.log(error);
+        }
+    }
+
     return(
         <div style={{background: '#f9f9f9', height: '100%', display: 'flex'}}>
             <AccountContainer>
@@ -66,29 +116,25 @@ function Account() {
                 </AccountTop>
                 <AccountInfoTop>
                     <BsPerson size='35' className='accountIcon'/>
-                    <AccountText type = "text" placeholder="이메일" />
+                    <AccountText type = "email" placeholder="이메일" value={email} onChange={inputEmail} />
                 </AccountInfoTop>
                 <AccountInfo>
-                    <TiSortNumericallyOutline size='35' className='accountIcon'/>
-                    <AccountText type = "text" placeholder="비밀번호" />
-                </AccountInfo>
-                <AccountInfo>
                     <AiOutlineLock size='35' className='accountIcon'/>
-                    <AccountText type = "text" placeholder="비밀번호 재입력" />
+                    <AccountText type = "password" placeholder="비밀번호" value={password} onChange={inputPassword} />
                 </AccountInfo>
                 <AccountInfo>
-                    <BsPersonCircle size='35' className='accountIcon'/>
-                    <AccountText type = "text" placeholder="이름" />
+                    <AiOutlineIdcard size='35' className='accountIcon'/>
+                    <AccountText type = "text" placeholder="이름" value={name} onChange={inputName} />
                 </AccountInfo>
                 <AccountInfo>
-                    <MdSmartphone size='35' className='accountIcon'/>
-                    <AccountText type = "text" placeholder="휴대폰 번호" />
+                    <TiSortNumericallyOutline size='35' className='accountIcon'/>
+                    <AccountText type = "tel" placeholder="휴대폰 번호" value={phone} onChange={inputPhone} />
                 </AccountInfo>
                 <AccountInfoBot>
                     <MdOutlineHome size='35' className='accountIcon'/>
-                    <AccountText type = "text" placeholder="주소" />
+                    <AccountText type = "text" placeholder="주소" value={address} onChange={inputAddress} />
                 </AccountInfoBot>
-                <AccountBtn>회원가입</AccountBtn>
+                <AccountBtn onClick= {onClickAccount}>회원가입</AccountBtn>
             </AccountContainer>
         </div>
     );

@@ -5,7 +5,7 @@
 .myBox {
     display: none;
     position: absolute;
-    left: -38%;
+    left: 0%;
     width: 100px;
     padding: 8px;
     border: 2px solid rgba(36, 176, 255, 1);
@@ -51,7 +51,7 @@
     margin-left: 10px;
 }
 
-.productTime {
+.productTime, .listTimeIcon {
     size: 20px;
     color: rgba(36, 176, 255, 1);
     padding-top: 5px;
@@ -75,13 +75,14 @@
     margin-right: 5px;
 }
 
-
+/* 좋아요 색상 변경? #8DD6FF 연하늘  */
 .heart {
     color: #fff;
     position: absolute;
-    z-index: 999;
+    z-index: 99;
     margin-left: 90px;
     margin-top: 125px;
+    cursor: pointer;
 }
 
 .termBox {
@@ -104,4 +105,17 @@
     display: none;
 }
 
+.githubIcon:link, :visited{
+    color: #d3d3d3;
+}
 
+.nameInput {
+    font-size: 32px;
+    font-family: 'Noto Sans KR', sans-serif;
+    border: none;
+    font-weight: bold;
+}
+
+.nameInput:focus {
+    outline: none;
+}

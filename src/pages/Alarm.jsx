@@ -1,8 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from "styled-components";
 import { AiOutlineBell } from "react-icons/ai";
-import Pagination from 'react-js-pagination';
-import '../components/paging.css'
 
 export const AlarmTop = styled.div`
     width: 75%;
@@ -51,14 +49,19 @@ function Alarm() {
     const alarmInfoList = [
         {
             id: '1',
-            content: '상품명: OOOOO\n 공구 게이지 100% 달성!\n 채팅방을 확인해주세요'
+            content: '상품명: OOOOO\n 공구 게이지 100% 달성!\n해당 계좌로 입금해주세요\n OO은행 0000000000000'
         },
         {
             id: '2',
-            content: '상품명: OOOOOO\n 공구 게이지 90% 달성!\n 채팅방을 확인해주세요'
-        }
+            content: '상품명: OOOOOO\n 공구 게이지 60% 달성!\n 해당 공구는 무산되었습니다'
+        },
+        {
+            id: '3',
+            content: '상품명: OOOOOO\n 공구 참여가 완료 되었습니다!\n'
+        },
+
     ]
-    const contentRender = () => {
+    const alarmRender = () => {
         const contents = [];
         for(let i = 0; i < alarmInfoList.length; i++) {
             contents.push(<AlarmBox><AlarmInfo>{alarmInfoList[i].content}</AlarmInfo></AlarmBox>);
@@ -68,8 +71,6 @@ function Alarm() {
         }
         return contents;
     };
-    const [page, setPage] = useState(1);
-    const changePage = (e) => { setPage(e); }
 
     return (
         <>
@@ -81,10 +82,9 @@ function Alarm() {
                 알림은 최대 8개까지 표시됩니다</span>
         </AlarmTop>
         <AlarmList>
-            {contentRender()}
+            {alarmRender()}
         </AlarmList>
-        <Pagination activePage={page} itemsCountPerPage={8} totalItemsCount={alarmInfoList.length} 
-        prevPageText={"‹"} nextPageText={"›"} onChange={changePage}/>
+        <div style={{height: '70px', backgroundColor: '#fff'}}></div>
         </>
     );
 }
