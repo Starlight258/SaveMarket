@@ -71,6 +71,9 @@ export const ProductList = styled.div`
 
 function Main() {
     const productData = Data.GetProducts();
+    const locationData = Data.GetLocation();
+    const userAddress = localStorage.getItem("userAddress");
+    const defaultAddress = "전남대학교";
 
     return(
         <>
@@ -83,10 +86,10 @@ function Main() {
 
             <ProductTitle>
                 <IoLocationSharp size='40' color='rgba(36, 176, 255, 1)'/>
-                &nbsp;{/*특정 위치*/}에서 공구중인 상품
+                &nbsp;{userAddress ? userAddress : defaultAddress}에서 공구중인 상품
             </ProductTitle>
             <ProductList>
-                {/* 특정 위치 공구 상품 4개 */}
+                {locationData.map(item => <Product key={item.id} item={item} />)}
             </ProductList>
 
             <ProductTitle>

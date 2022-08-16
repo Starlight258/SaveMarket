@@ -93,18 +93,14 @@ function Account() {
         address: address
     }
 
-    const onClickAccount = async() => {
-        try {
-            const response = await
-            axios.post("/api/accout/", user, {
-                headers: {"Content-Type":"application/json"},
-                withCredentials: true }
-            );
-            return response.data;
-        }
-        catch(error) {
-            console.log(error);
-        }
+    const onClickAccount = () => {
+        axios.post("http://127.0.0.1:8000/api/account/", user)
+            .then((res) => {
+                alert("성공");
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 
     return(

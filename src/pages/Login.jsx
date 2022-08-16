@@ -108,24 +108,24 @@ function Login() {
         setPassword(e.target.value);
     }
 
+    const user = {
+        username : email,
+        password : password
+    };
+
     const onClickLogin = () => {
-        axios.post('', {
-            userEmail : email,
-            userPassword: password
-        })
+        axios.post('http://127.0.0.1:8000/api/auth/login', user)
         .then(res => {
-            console.log(res);
-            console.log(res.data.email);
-            console.log(res.data.password);
-            if(res.data.email !== email) {
-                alert('잘못된 이메일입니다');
-            } else if(res.data.password === password) {
-                alert('잘못된 비밀번호입니다');
-            } else if(res.data.email === email) {
-                sessionStorage.setItem('userEmail', email);
+            if(res.data.token) {
+                alert('로그인 성공');
+                localStorage.setItem('token', res.data.token);
+                localStorage.setItem('userName', res.data.name);
+                localStorage.setItem('userAddress', res.data.address);
             }
         })
-        .catch(console.log('error'))
+        .catch(() => {
+            alert("다시 입력해주세요");
+        })
     }
 
     return(

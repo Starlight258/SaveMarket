@@ -75,13 +75,32 @@ const MyBoxMenu = styled.div`
 
 
 function Header() {
+    const token = localStorage.getItem("token");
+    const userName = localStorage.getItem("userName");
+
+    const onClickLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('userAddress');
+    }
+
     return (
         <>
-            <Top>
-                <TopMenu><Link to='/login' style={{textDecoration : 'none', color: 'black'}}>로그인</Link></TopMenu>
-                <TopMenu><Link to='/account' style={{textDecoration : 'none', color: 'black'}}>회원가입</Link></TopMenu>
-                <TopMenu>고객센터</TopMenu>
-            </Top>
+            {token ? (
+                <Top>
+                    <TopMenu>{userName}님</TopMenu>
+                    {/* onClick localStorage token userName 지우는 함수 */}
+                    <TopMenu onClick = {onClickLogout}><Link to='/' style={{textDecoration : 'none', color: 'black'}}>로그아웃</Link></TopMenu>
+                    <TopMenu>고객센터</TopMenu>
+                </Top>)
+             : (
+                <Top>
+                    <TopMenu><Link to='/login' style={{textDecoration : 'none', color: 'black'}}>로그인</Link></TopMenu>
+                    <TopMenu><Link to='/account' style={{textDecoration : 'none', color: 'black'}}>회원가입</Link></TopMenu>
+                    <TopMenu>고객센터</TopMenu>
+                </Top>
+             )}
+
             <Main>
                 <Link to='/'><Logo src={logo} /></Link>
                 <Search>

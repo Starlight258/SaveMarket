@@ -6,6 +6,7 @@ import * as Main from "./Main";
 import JoinModal from "../components/JoinModal";
 import WishModal from "../components/WishModal";
 import { HiCursorClick } from "react-icons/hi";
+import * as Data from '../Data.jsx';
 
 export const DetailInfo = styled.div`
     width: 75%;
@@ -102,6 +103,10 @@ function ProductDetail(props) {
         setWModal(false);
     }
 
+    const productData = Data.GetProducts();
+    const newData = Data.GetNew(productData);
+    const locationData = Data.GetLocation();
+
     return(
         <>
         <DetailInfo>
@@ -136,14 +141,14 @@ function ProductDetail(props) {
             <AddProductText>위 상품과 동일한 장소에서 공구중인 상품</AddProductText>
         </div>
         <Main.ProductList style={{marginTop: '0px'}}>
-            {/* 동일한 장소 상품 4개 */}
+            {locationData.map(item => <Product key={item.id} item={item} />)}
         </Main.ProductList>
 
         <div style={{width: '73%', margin: 'auto', marginTop: '10px'}}>
             <AddProductText>이런 상품은 어떠세요?</AddProductText>
         </div>
         <Main.ProductList style={{marginTop: '0px'}}>
-            {/* 동일한 카테고리 상품 4개 */}
+            {newData.map(item => <Product key={item.id} item={item} />)}
         </Main.ProductList>
         </>
     );

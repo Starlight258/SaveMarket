@@ -6,7 +6,7 @@ export const GetProducts = () => {
 
     useEffect(() => {
         const GetProductData = async () => {
-          const products = await axios.Get('/api/product/');
+          const products = await axios.get('http://127.0.0.1:8000/api/product/');
           setProductData(products.data);
         };
         GetProductData();
@@ -62,3 +62,22 @@ export const GetEtc = () => {
     const EtcData = productData.filter((item) => item.category === '7');
     return EtcData;
 }
+
+export const GetLocation = () => {
+    const userAddress = localStorage.getItem("userAddress");
+    const productData = GetProducts();
+    const Locations = productData.filter((item) => item.place === userAddress);
+    const LocationData = [];
+    for(let i = 0; i < 4; i++) {
+        LocationData.push(Locations[i]);
+    }
+    return LocationData;
+}
+
+export const GetNew = (data) => {
+    const data4 = [];
+    for(let i = data.length; i > data.length - 4; i--) {
+        data4.push(data[i])
+    }
+    return data4;
+};

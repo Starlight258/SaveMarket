@@ -15,6 +15,7 @@ import * as Main from "./Main";
 import CreateModal from "../components/CreateModal";
 import "../icon.css";
 import DefaultImg from "../img/defaultImg.png";
+import * as Data from '../Data.jsx';
 
 const StyleSelect = styled(Select)`
     height: 30px;
@@ -32,6 +33,7 @@ const CreateInfo = styled.div`
 const CreateText = styled.div`
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 25px;
+    font-weight: bold;
     display: block;
     margin-right: 15px;
 `;
@@ -175,7 +177,11 @@ function Create() {
             setImageSrc(reader.result);
             resolve();};
         });
-      };
+    };
+
+    const productData = Data.GetProducts();
+    const newData = Data.GetNew(productData);
+    const locationData = Data.GetLocation();
 
     return (
         <>
@@ -226,14 +232,14 @@ function Create() {
             <ProductDetail.AddProductText>동일한 곳에서 공구중인 상품</ProductDetail.AddProductText>
         </div>
         <Main.ProductList style={{marginTop: '0px'}}>
-            
+            {locationData.map(item => <Product key={item.id} item={item} />)}
         </Main.ProductList>
 
         <div style={{width: '73%', margin: 'auto', marginTop: '10px'}}>
             <ProductDetail.AddProductText>이런 상품은 어떠세요?</ProductDetail.AddProductText>
         </div>
         <Main.ProductList style={{marginTop: '0px'}}>
-
+            {newData.map(item => <Product key={item.id} item={item} />)}
         </Main.ProductList>
 
         <div style={{height: '70px', backgroundColor: '#fff'}}></div>

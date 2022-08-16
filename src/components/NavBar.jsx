@@ -79,28 +79,28 @@ function NavBar({}) {
                         </Making>
                     </Link>
                     <Category>
-                        <CategoryLink current={pathname === '/beauty'} to='/beauty'>의류⋅잡화⋅뷰티</CategoryLink>
+                        <CategoryLink current={pathname === '/beauty' ? 1 : 0} to='/beauty'>의류⋅잡화⋅뷰티</CategoryLink>
                     </Category>
                     <Category>
-                        <CategoryLink current={pathname === '/food'} to='/food'>식품</CategoryLink>
+                        <CategoryLink current={pathname === '/food' ? 1 : 0} to='/food'>식품</CategoryLink>
                     </Category>
                     <Category>
-                        <CategoryLink current={pathname === '/stationery'} to='/stationery'>취미⋅문구</CategoryLink>
+                        <CategoryLink current={pathname === '/stationery' ? 1 : 0} to='/stationery'>취미⋅문구</CategoryLink>
                     </Category>
                     <Category>
-                        <CategoryLink current={pathname === '/book'} to='/book'>도서⋅교육⋅음반</CategoryLink>
+                        <CategoryLink current={pathname === '/book' ? 1 : 0} to='/book'>도서⋅교육⋅음반</CategoryLink>
                     </Category>
                     <Category>
-                        <CategoryLink current={pathname === '/life'} to='/life'>생활⋅주방용품</CategoryLink>
+                        <CategoryLink current={pathname === '/life' ? 1 : 0} to='/life'>생활⋅주방용품</CategoryLink>
                     </Category>
                     <Category>
-                        <CategoryLink current={pathname === '/interior'} to='/interior'>가구⋅인테리어</CategoryLink>
+                        <CategoryLink current={pathname === '/interior' ? 1 : 0} to='/interior'>가구⋅인테리어</CategoryLink>
                     </Category>
                     <Category>
-                        <CategoryLink current={pathname === '/pet'} to='/pet'>반려동물</CategoryLink>
+                        <CategoryLink current={pathname === '/pet' ? 1 : 0} to='/pet'>반려동물</CategoryLink>
                     </Category>
                     <Category>
-                        <CategoryLink current={pathname === '/etc'} to='/etc'>기타</CategoryLink>
+                        <CategoryLink current={pathname === '/etc' ? 1 : 0} to='/etc'>기타</CategoryLink>
                     </Category>
                 </Menu>
             </Bar>

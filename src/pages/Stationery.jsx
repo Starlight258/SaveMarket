@@ -8,13 +8,15 @@ import * as Data from '../Data.jsx';
 
 function Stationery() {
     const StationeryData = Data.GetStationery();
+    const newData = Data.GetNew(StationeryData);
+
     return(
         <>
             <Main.ProductTitle>
                 <IoSparkles size='40' color='rgba(36, 176, 255, 1)'/>&nbsp;신규 공구! NEW~
             </Main.ProductTitle>
             <Main.ProductList>
-                {/* 해당 카테고리 신규 상품 4개 */}
+                {newData.map(item => <Product key={item.id} item={item} />)}
             </Main.ProductList>
 
             <Category.CategoryTitle>
@@ -30,7 +32,7 @@ function Stationery() {
                 </Category.SelectSort>
             </Category.CategoryTitle>
             <Main.ProductList>
-                {/* 해당 카테고리 상품 */}
+                {StationeryData.map(item => <Product key={item.id} item={item} />)}
             </Main.ProductList>
             <div style={{height: '70px', backgroundColor: '#fff'}}></div>
         </>

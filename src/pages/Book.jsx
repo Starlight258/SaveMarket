@@ -8,6 +8,7 @@ import * as Data from '../Data.jsx';
 
 function Book() {
     const BookData = Data.GetBook();
+    const newData = Data.GetNew(BookData);
 
     return(
         <>
@@ -15,7 +16,7 @@ function Book() {
                 <IoSparkles size='40' color='rgba(36, 176, 255, 1)'/>&nbsp;신규 공구! NEW~
             </Main.ProductTitle>
             <Main.ProductList>
-                {/* 해당 카테고리 신규 상품 4개 */}
+                {newData.map(item => <Product key={item.id} item={item} />)}
             </Main.ProductList>
 
             <Category.CategoryTitle>
