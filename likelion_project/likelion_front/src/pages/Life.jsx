@@ -7,7 +7,7 @@ import { GiCookingGlove } from "react-icons/gi";
 import * as Data from "../Data.jsx";
 
 function Life() {
-  // const LifeData = Data.GetLife();
+  const LifeData = Data.GetLife();
   // const newData = Data.GetNew(LifeData);
 
   return (
@@ -34,7 +34,9 @@ function Life() {
         </Category.SelectSort>
       </Category.CategoryTitle>
       <Main.ProductList>
-        {/* {LifeData.map(item => <Product key={item.id} item={item} />)} */}
+        {LifeData.map((item) => (
+          <Product key={item.id} item={item} />
+        ))}
       </Main.ProductList>
       <div style={{ height: "70px", backgroundColor: "#fff" }}></div>
     </>

@@ -7,7 +7,7 @@ import { FaPenAlt } from "react-icons/fa";
 import * as Data from "../Data.jsx";
 
 function Stationery() {
-  // const StationeryData = Data.GetStationery();
+  const StationeryData = Data.GetStationery();
   // const newData = Data.GetNew(StationeryData);
 
   return (
@@ -34,7 +34,9 @@ function Stationery() {
         </Category.SelectSort>
       </Category.CategoryTitle>
       <Main.ProductList>
-        {/* {StationeryData.map(item => <Product key={item.id} item={item} />)} */}
+        {StationeryData.map((item) => (
+          <Product key={item.id} item={item} />
+        ))}
       </Main.ProductList>
       <div style={{ height: "70px", backgroundColor: "#fff" }}></div>
     </>

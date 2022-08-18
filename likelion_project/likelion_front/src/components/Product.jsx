@@ -54,9 +54,9 @@ function Product({ item }) {
 
   return (
     <ProductInfo>
-      {/* <Link to={src}> */}
-      <ProductImg src={item.product_image} />
-      {/* </Link> */}
+      <Link to={src}>
+        <ProductImg src={item.product_image} />
+      </Link>
       {like ? (
         <AiOutlineHeart className="heart" size="50" onClick={likeClick} />
       ) : (
@@ -72,7 +72,7 @@ function Product({ item }) {
         height="7px"
         width="200px"
       />
-      <Link to={src}>
+      <Link to={src} style={{ textDecoration: "none", color: "black" }}>
         <ProductName>{item.name}</ProductName>
       </Link>
       <ProductTime>

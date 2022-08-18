@@ -20,11 +20,13 @@ export const GetData = (id) => {
   const aData = productData.filter((item) => item.id === id);
   return aData;
 };
-// export const GetBeauty = () => {
-//   const productData = GetProducts();
-//   const BeautyData = productData.filter((item) => item.category === "0");
-//   return BeautyData;
-// };
+export const GetBeauty = () => {
+  const productData = GetProducts();
+  const BeautyData = productData.filter(
+    (item) => item.description === "의류/잡화/뷰티"
+  );
+  return BeautyData;
+};
 
 export const GetFood = () => {
   const productData = GetProducts();
@@ -32,41 +34,41 @@ export const GetFood = () => {
   return FoodData;
 };
 
-// export const GetStationery = () => {
-//   const productData = GetProducts();
-//   const StationeryData = productData.filter((item) => item.category === "2");
-//   return StationeryData;
-// };
+export const GetStationery = () => {
+  const productData = GetProducts();
+  const StationeryData = productData.filter((item) => item.description === "2");
+  return StationeryData;
+};
 
-// export const GetBook = () => {
-//   const productData = GetProducts();
-//   const BookData = productData.filter((item) => item.category === "3");
-//   return BookData;
-// };
+export const GetBook = () => {
+  const productData = GetProducts();
+  const BookData = productData.filter((item) => item.description === "3");
+  return BookData;
+};
 
-// export const GetLife = () => {
-//   const productData = GetProducts();
-//   const LifeData = productData.filter((item) => item.category === "4");
-//   return LifeData;
-// };
+export const GetLife = () => {
+  const productData = GetProducts();
+  const LifeData = productData.filter((item) => item.description === "4");
+  return LifeData;
+};
 
-// export const GetInterior = () => {
-//   const productData = GetProducts();
-//   const InteriorData = productData.filter((item) => item.category === "5");
-//   return InteriorData;
-// };
+export const GetInterior = () => {
+  const productData = GetProducts();
+  const InteriorData = productData.filter((item) => item.description === "5");
+  return InteriorData;
+};
 
-// export const GetPet = () => {
-//   const productData = GetProducts();
-//   const PetData = productData.filter((item) => item.category === "6");
-//   return PetData;
-// };
+export const GetPet = () => {
+  const productData = GetProducts();
+  const PetData = productData.filter((item) => item.description === "6");
+  return PetData;
+};
 
-// export const GetEtc = () => {
-//   const productData = GetProducts();
-//   const EtcData = productData.filter((item) => item.category === "7");
-//   return EtcData;
-// };
+export const GetEtc = () => {
+  const productData = GetProducts();
+  const EtcData = productData.filter((item) => item.description === "7");
+  return EtcData;
+};
 
 export const GetLocation = () => {
   const userAddress = localStorage.getItem("userAddress");

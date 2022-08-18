@@ -7,7 +7,7 @@ import { FaBook } from "react-icons/fa";
 import * as Data from "../Data.jsx";
 
 function Book() {
-  // const BookData = Data.GetBook();
+  const BookData = Data.GetBook();
   // const newData = Data.GetNew(BookData);
 
   return (
@@ -34,7 +34,9 @@ function Book() {
         </Category.SelectSort>
       </Category.CategoryTitle>
       <Main.ProductList>
-        {/* {BookData.map(item => <Product key={item.id} item={item} />)} */}
+        {BookData.map((item) => (
+          <Product key={item.id} item={item} />
+        ))}
       </Main.ProductList>
       <div style={{ height: "70px", backgroundColor: "#fff" }}></div>
     </>

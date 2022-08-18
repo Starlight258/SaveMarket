@@ -7,7 +7,7 @@ import { BsQuestionSquareFill } from "react-icons/bs";
 import * as Data from "../Data.jsx";
 
 function Etc() {
-  // const EtcData = Data.GetEtc();
+  const EtcData = Data.GetEtc();
   // const newData = Data.GetNew(EtcData);
 
   return (
@@ -34,7 +34,9 @@ function Etc() {
         </Category.SelectSort>
       </Category.CategoryTitle>
       <Main.ProductList>
-        {/* {EtcData.map(item => <Product key={item.id} item={item} />)} */}
+        {EtcData.map((item) => (
+          <Product key={item.id} item={item} />
+        ))}
       </Main.ProductList>
       <div style={{ height: "70px", backgroundColor: "#fff" }}></div>
     </>

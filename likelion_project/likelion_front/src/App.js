@@ -7,7 +7,7 @@ import Account from "./pages/Account";
 import Alarm from "./pages/Alarm";
 import Wishlist from "./pages/Wishlist";
 import Joinlist from "./pages/Joinlist";
-import ProductDetail from "./pages/ProductDetail";
+import ProductDetailcopy from "./pages/ProductDetailcopy";
 import Create from "./pages/Create";
 import Footer from "./components/Footer";
 import Beauty from "./pages/Beauty";
@@ -33,7 +33,7 @@ function App() {
         <Route path="/create" element={<Create />}></Route>
 
         <Route path="/beauty" element={<Beauty />}></Route>
-        <Route path="/:id" element={<ProductDetail />}></Route>
+        <Route path="/:id" element={<ProductDetailcopy />}></Route>
         <Route path="/food" element={<Food />}></Route>
         {/* <Route path="/food/:id" element={<ProductDetail />}></Route> */}
         <Route path="/stationery" element={<Stationery />}></Route>

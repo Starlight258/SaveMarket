@@ -7,7 +7,7 @@ import { TbHanger } from "react-icons/tb";
 import * as Data from "../Data.jsx";
 
 function Beauty() {
-  //const BeautyData = Data.GetBeauty();
+  const BeautyData = Data.GetBeauty();
   // const newData = Data.GetNew(BeautyData);
 
   return (
@@ -34,7 +34,9 @@ function Beauty() {
         </Category.SelectSort>
       </Category.CategoryTitle>
       <Main.ProductList>
-        {/* {BeautyData.map(item => <Product key={item.id} item={item} />)} */}
+        {BeautyData.map((item) => (
+          <Product key={item.id} item={item} />
+        ))}
       </Main.ProductList>
       <div style={{ height: "70px", backgroundColor: "#fff" }}></div>
     </>

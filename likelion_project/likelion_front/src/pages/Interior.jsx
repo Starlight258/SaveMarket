@@ -7,7 +7,7 @@ import { MdChair } from "react-icons/md";
 import * as Data from "../Data.jsx";
 
 function Interior() {
-  // const InteriorData = Data.GetInterior();
+  const InteriorData = Data.GetInterior();
   // const newData = Data.GetNew(InteriorData);
 
   return (
@@ -34,7 +34,9 @@ function Interior() {
         </Category.SelectSort>
       </Category.CategoryTitle>
       <Main.ProductList>
-        {/* {InteriorData.map(item => <Product key={item.id} item={item} />)} */}
+        {InteriorData.map((item) => (
+          <Product key={item.id} item={item} />
+        ))}
       </Main.ProductList>
       <div style={{ height: "70px", backgroundColor: "#fff" }}></div>
     </>

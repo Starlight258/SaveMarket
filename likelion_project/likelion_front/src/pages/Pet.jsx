@@ -7,7 +7,7 @@ import { MdPets } from "react-icons/md";
 import * as Data from "../Data.jsx";
 
 function Pet() {
-  // const PetData = Data.GetPet();
+  const PetData = Data.GetPet();
   // const newData = Data.GetNew(PetData);
 
   return (
@@ -34,7 +34,9 @@ function Pet() {
         </Category.SelectSort>
       </Category.CategoryTitle>
       <Main.ProductList>
-        {/* {PetData.map(item => <Product key={item.id} item={item} />)} */}
+        {PetData.map((item) => (
+          <Product key={item.id} item={item} />
+        ))}
       </Main.ProductList>
       <div style={{ height: "70px", backgroundColor: "#fff" }}></div>
     </>
