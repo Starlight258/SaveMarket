@@ -78,7 +78,7 @@ function Main() {
 
   return (
     <>
-      <p>{JSON.stringify(productData)}</p>
+      {/* <p>{JSON.stringify(productData)}</p> */}
       <Banner>
         <img src={banner} style={{ width: "100%" }} />
         <BannerTitle>주변 사람들과 함께 아껴보세요</BannerTitle>

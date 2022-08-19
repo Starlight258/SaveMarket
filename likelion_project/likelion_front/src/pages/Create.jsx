@@ -1,4 +1,4 @@
-import React, { useState, useNavigate } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Select from "react-select";
@@ -13,7 +13,7 @@ import * as ProductDetail from "./ProductDetailcopy";
 import CreateModal from "../components/CreateModal";
 import "../icon.css";
 import DefaultImg from "../img/defaultImg.png";
-import * as Data from "../Data.jsx";
+import axios from "axios";
 
 const StyleSelect = styled(Select)`
   height: 30px;
@@ -178,6 +178,67 @@ function Create() {
     });
   };
 
+  const [description, setDescription] = useState("");
+  const [target, setTarget] = useState("");
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [place, setPlace] = useState("");
+  const [buy_link, setBuyLink] = useState("");
+  const [product_image, setProductImage] = useState("");
+
+  const inputDescription = (e) => {
+    setDescription(e.target.value);
+  };
+
+  const inputTarget = (e) => {
+    setTarget(e.target.value);
+  };
+
+  const inputName = (e) => {
+    setName(e.target.value);
+  };
+
+  const inputPrice = (e) => {
+    setPrice(e.target.value);
+  };
+
+  const inputPlace = (e) => {
+    setPlace(e.target.value);
+  };
+
+  const inputBuyLink = (e) => {
+    setBuyLink(e.target.value);
+  };
+
+  const inputProductImage = (e) => {
+    // alert(e); //undefined
+    // setProductImage(e.target.files[0]);
+    alert(e.target.file);
+    product.append("product_image", e.target.file);
+  };
+
+  const product = {
+    description: "description",
+    name: name,
+    target: target,
+    price: price,
+    place: place,
+    buy_link: buy_link,
+    product_image: null,
+  };
+
+  // api url 변경
+  const onClickCreate = () => {
+    axios
+      .post("http://127.0.0.1:8000/api/product/register/", product)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <>
       <ProductDetail.DetailInfo style={{ height: "560px" }}>
@@ -195,14 +256,19 @@ function Create() {
               ),
               value: "카테고리를 선택하세요.",
             }}
+            value={description}
+            onChange={inputDescription}
           />
           {<CreateImg src={imageSrc ? imageSrc : DefaultImg} />}
           <UploadInput
             type="file"
             accept="image/*"
             alt=" "
+            // value={product_image}
+            name="product_image"
             onChange={(e) => {
               previewImg(e.target.files[0]);
+              inputProductImage();
             }}
           />
         </ProductDetail.DetailContent>
@@ -213,6 +279,8 @@ function Create() {
             type="text"
             placeholder="물품 이름을 입력해 주세요"
             className="nameInput"
+            value={name}
+            onChange={inputName}
           />
 
           <ProductDetail.DetailBox style={{ padding: "30px 30px 0px 30px" }}>
@@ -228,6 +296,8 @@ function Create() {
                 <CreateInput
                   type="text"
                   placeholder="목표 인원을 입력해 주세요"
+                  value={target}
+                  onChange={inputTarget}
                 />
               </CreateInfo>
               <CreateInfo>
@@ -235,6 +305,8 @@ function Create() {
                 <CreateInput
                   type="text"
                   placeholder="상품 금액을 입력해 주세요"
+                  value={price}
+                  onChange={inputPrice}
                 />
               </CreateInfo>
               <CreateInfo>
@@ -242,6 +314,8 @@ function Create() {
                 <CreateInput
                   type="text"
                   placeholder="수령 장소를 입력해 주세요"
+                  value={place}
+                  onChange={inputPlace}
                 />
               </CreateInfo>
               <CreateText>구매페이지 : </CreateText>
@@ -249,6 +323,8 @@ function Create() {
                 type="text"
                 placeholder="상품 페이지 주소를 입력해 주세요"
                 style={{ margin: "15px 0 40px 0" }}
+                value={buy_link}
+                onChange={inputBuyLink}
               />
             </div>
 
@@ -256,7 +332,14 @@ function Create() {
               <Link to="/" style={{ textDecoration: "none" }}>
                 <StopButton>취소</StopButton>
               </Link>
-              <CreateButton onClick={openCModal}>공구 시작</CreateButton>
+              <CreateButton
+                onClick={() => {
+                  openCModal();
+                  onClickCreate();
+                }}
+              >
+                공구 시작
+              </CreateButton>
               <CreateModal open={Cmodal} close={closeCModal} />
             </div>
           </ProductDetail.DetailBox>
